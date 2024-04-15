@@ -25,7 +25,7 @@ const ProductSchema = {
   },
   price: {
     allowNull: false,
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
   },
   categoryId: {
     field: 'category_id',

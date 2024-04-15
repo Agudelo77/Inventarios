@@ -1,5 +1,3 @@
-const { table } = require('console');
-const { type } = require('os');
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
 const CATEGORY_TABLE = 'categories';
@@ -30,7 +28,7 @@ const CategorySchema = {
 
 class Category extends Model {
   static associate(models) {
-    this.hasMany(models.Products, { as: 'Products', foreignKey: 'categoryId' });
+    this.hasMany(models.Product, { as: 'products', foreignKey: 'categoryId' });
   }
   static config(sequelize) {
     return {

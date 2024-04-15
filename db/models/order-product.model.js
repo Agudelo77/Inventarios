@@ -3,7 +3,7 @@ const { Model, DataTypes, Sequelize } = require('sequelize');
 const { ORDER_TABLE } = require('./order.model');
 const { PRODUCT_TABLE } = require('./product.model');
 
-const ORDER_PRODUCT = 'order_product';
+const ORDER_PRODUCT_TABLE = 'order_product';
 
 const OrderProductSchema = {
   id: {
@@ -47,11 +47,11 @@ class OrderProduct extends Model {
   static config(sequelize) {
     return {
       sequelize,
-      tableName: ORDER_PRODUCT,
+      tableName: ORDER_PRODUCT_TABLE,
       modelName: 'OrderProduct',
       timestamps: false,
     };
   }
 }
 
-module.exports = { ORDER_PRODUCT, OrderProductSchema, OrderProduct };
+module.exports = { ORDER_PRODUCT_TABLE, OrderProductSchema, OrderProduct };

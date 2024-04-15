@@ -1,4 +1,3 @@
-const { type } = require('@hapi/joi/lib/extend');
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
 const { USER_TABLE } = require('./user.model');
@@ -23,12 +22,13 @@ const CustomerSchema = {
   },
   phone: {
     allowNull: false,
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
   },
   userId: {
     allowNull: false,
-    type: DataTypes.INTEGER,
     field: 'user_id',
+    type: DataTypes.INTEGER,
+    unique: true,
     references: {
       model: USER_TABLE,
       key: 'id',
