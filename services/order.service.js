@@ -4,7 +4,14 @@ const { models } = require('../libs/sequelize');
 
 class OrderService {
   async create(data) {
-      const newOrder = await models.Order.create(data);
+    const customer = await models.Customer.findOne({
+      where: {
+        '$user.id$': data.userId,
+      },
+      include: ['user'],
+    });
+    data.customerId = customer.id;
+    const newOrder = await models.Order.create(data);
     return newOrder;
   }
 
@@ -24,7 +31,7 @@ class OrderService {
           association: 'customer',
           include: ['user'],
         },
-        'items'
+        'items',
       ],
     });
     if (!order) throw boom.notFound('Order not found');
@@ -33,15 +40,8 @@ class OrderService {
 
   async findByUser(userId) {
     const orders = await models.Order.findAll({
-      where: {
-        '$customer.user.id': userId,
-      },
-      include: [
-        {
-          association: 'customer',
-          include: ['user'],
-        },
-      ],
+      where: { '$customer.user.id$': userId },
+      include: [{ association: 'customer', include: ['user'] }],
     });
     return orders;
   }

@@ -29,7 +29,7 @@ router.get(
 router.get(
   '/:id',
   passport.authenticate('jwt', { session: false }),
-  checkRoles('admin', 'seller', 'customer'),
+  checkRoles('admin', 'seller'),
   validationHandler(getCustomerSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -44,7 +44,7 @@ router.get(
 router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
-  checkRoles('admin'),
+  checkRoles('admin', 'seller', 'customer'),
   validationHandler(createCustomerSchema, 'body'),
   async (req, res, next) => {
     try {
@@ -59,7 +59,7 @@ router.post(
 router.patch(
   '/:id',
   passport.authenticate('jwt', { session: false }),
-  checkRoles('admin', 'seller'),
+  checkRoles('admin', 'seller', 'customer'),
   validationHandler(getCustomerSchema, 'params'),
   validationHandler(updateCustomerSchema, 'body'),
   async (req, res, next) => {

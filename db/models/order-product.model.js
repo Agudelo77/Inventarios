@@ -12,6 +12,10 @@ const OrderProductSchema = {
     primaryKey: true,
     type: DataTypes.INTEGER,
   },
+  amount: {
+    allowNull: false,
+    type: DataTypes.INTEGER,
+  },
   orderId: {
     allowNull: false,
     type: DataTypes.INTEGER,
