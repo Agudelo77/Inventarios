@@ -9,7 +9,6 @@ const UserService = require('./user.service');
 const service = new UserService();
 
 class AuthService {
-
   async getUser(email, password) {
     const user = await service.findByEmail(email);
     if (!user) {
